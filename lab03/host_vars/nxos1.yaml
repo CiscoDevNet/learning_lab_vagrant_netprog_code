@@ -1,0 +1,37 @@
+---
+# Connection details for SSH/CLI Access
+provider_ssh:
+  host: 127.0.0.1
+  port: 2222
+  username: vagrant
+  password: vagrant
+  transport: cli
+# Connection details for NX-API Access
+provider_nxapi:
+  host: 127.0.0.1
+  port: 2224
+  username: vagrant
+  password: vagrant
+  transport: nxapi
+
+interfaces:
+    - name: Loopback11
+      desc: Sample Network Route Injection
+      ip_address: 172.21.1.1
+      prefix: 24
+    - name: Loopback12
+      desc: Sample Network Route Injection
+      ip_address: 172.21.2.1
+      prefix: 24
+    - name: Loopback13
+      desc: Sample Network Route Injection
+      ip_address: 172.21.3.1
+      prefix: 24
+    - name: Loopback14
+      desc: Sample Network Route Injection
+      ip_address: 172.21.4.1
+      prefix: 24
+    - name: Ethernet1/1
+      desc: Link to other switch
+      ip_address: 172.20.0.1
+      prefix: 24
