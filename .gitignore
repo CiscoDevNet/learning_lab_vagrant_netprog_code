@@ -1,0 +1,6 @@
+.vagrant/
+*.retry
+*.pyc
+.idea/
+lab01/Vagrantfile
+venv/
