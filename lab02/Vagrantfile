@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.define "nxos1" do |node|
+        node.vm.box =  "nxos/7.0.3.I6.1"
+
+        # eth1/1 connected to link2,
+        node.vm.network :private_network, virtualbox__intnet: "link2", auto_config: false
+
+        # Explicity set SSH Port to avoid conflict and for provisioning
+        config.vm.network :forwarded_port, guest: 22, host: 3122, id: 'ssh', auto_correct: true
+
+        # Forward API Ports
+        config.vm.network :forwarded_port, guest: 80, host: 3180, id: 'http', auto_correct: true
+        config.vm.network :forwarded_port, guest: 443, host: 3143, id: 'https', auto_correct: true
+        config.vm.network :forwarded_port, guest: 830, host: 3130, id: 'netconf', auto_correct: true
+    end
+
+    config.vm.define "nxos2" do |node|
+        node.vm.box =  "nxos/7.0.3.I6.1"
+
+        # eth1/1 connected to link2,
+        node.vm.network :private_network, virtualbox__intnet: "link2", auto_config: false
+
+        # Explicity set SSH Port to avoid conflict and for provisioning
+        config.vm.network :forwarded_port, guest: 22, host: 3222, id: 'ssh', auto_correct: true
+
+        # Forward API Ports
+        config.vm.network :forwarded_port, guest: 80, host: 3280, id: 'http', auto_correct: true
+        config.vm.network :forwarded_port, guest: 443, host: 3243, id: 'https', auto_correct: true
+        config.vm.network :forwarded_port, guest: 830, host: 3230, id: 'netconf', auto_correct: true
+    end
+
+end
+
