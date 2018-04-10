@@ -10,6 +10,11 @@ Vagrant.configure("2") do |config|
         config.vm.network :forwarded_port, guest: 80, host: 2224, id: 'http'
     end
 
+    config.vm.provider "virtualbox" do |vb|
+      # Customize the amount of memory on the VM:
+      vb.memory = "4096"
+    end
+
     # Setup Ansible Provisioning
     config.vm.provision "ansible" do |ansible|
       ansible.playbook = "ansible_provision.yaml"
